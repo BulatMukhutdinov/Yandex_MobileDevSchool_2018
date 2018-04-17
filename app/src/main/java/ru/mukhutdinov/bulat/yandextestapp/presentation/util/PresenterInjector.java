@@ -18,12 +18,12 @@ public class PresenterInjector {
     }
 
     @NonNull
-    public static ListPresenter provideListPresenter(MainRouter router, ListView listView) {
-        return new ListPresenterImpl(router, listView);
+    public static ListPresenter provideListPresenter(ListView listView, MainRouter router) {
+        return new ListPresenterImpl(listView, router);
     }
 
     @NonNull
-    public static ItemPresenter provideItemPresenter(MainRouter router, ItemView itemView) {
-        return new ItemPresenterImpl(router, itemView);
+    public static ItemPresenter provideItemPresenter(ItemView itemView, MainRouter router) {
+        return new ItemPresenterImpl(itemView, router);
     }
 }

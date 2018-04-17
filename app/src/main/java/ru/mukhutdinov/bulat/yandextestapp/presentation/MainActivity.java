@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import ru.mukhutdinov.bulat.yandextestapp.R;
+import ru.mukhutdinov.bulat.yandextestapp.data.Photo;
 import ru.mukhutdinov.bulat.yandextestapp.presentation.module.item.ItemFragment;
 import ru.mukhutdinov.bulat.yandextestapp.presentation.module.list.ListFragment;
 
@@ -37,10 +38,10 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
     }
 
     @Override
-    public void showPhoto(ImageView photo, String photoUrl) {
+    public void showPhoto(Photo photo, ImageView image) {
         getSupportFragmentManager().beginTransaction()
-                .addSharedElement(photo, ViewCompat.getTransitionName(photo))
-                .replace(R.id.container, ItemFragment.newInstance(photoUrl, ViewCompat.getTransitionName(photo)))
+                .addSharedElement(image, ViewCompat.getTransitionName(image))
+                .replace(R.id.container, ItemFragment.newInstance(photo, ViewCompat.getTransitionName(image)))
                 .addToBackStack(null)
                 .commit();
     }

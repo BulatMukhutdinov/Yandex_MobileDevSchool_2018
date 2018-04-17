@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.0'
+        classpath 'com.android.tools.build:gradle:3.1.1'
         
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -29,5 +29,7 @@ task clean(type: Delete) {
 ext {
     androidSupportLibraryVersion = "27.1.1"
     archLifecycleVersion = "1.1.1"
+    lombokVersion = "1.16.20"
+    powermockVersion = "1.7.4"
     lintAbortOnError = false
 }

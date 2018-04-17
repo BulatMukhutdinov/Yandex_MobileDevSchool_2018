@@ -1,7 +1,5 @@
 package ru.mukhutdinov.bulat.yandextestapp.data;
 
-import android.support.annotation.NonNull;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -19,4 +17,8 @@ public class Photo implements Serializable {
     @Getter
     @SerializedName("webformatURL")
     private final String webFormatURL;
+
+    @Getter
+    @SerializedName("tags")
+    private final String tags;
 }

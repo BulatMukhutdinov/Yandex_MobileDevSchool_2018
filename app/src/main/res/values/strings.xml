@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">YandexTestApp</string>
     <string name="retry">Retry</string>
+    <string name="network_error">Failed to connect. Please check your internet connection</string>
 </resources>

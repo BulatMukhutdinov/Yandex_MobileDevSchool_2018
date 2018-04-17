@@ -46,7 +46,7 @@ public class PhotoAdapter extends PagedListAdapter<Photo, RecyclerView.ViewHolde
             case R.layout.item_photo:
                 ((PhotoViewHolder) holder).bindTo(getItem(position));
                 // noinspection ConstantConditions
-                ViewCompat.setTransitionName(((PhotoViewHolder) holder).photo,
+                ViewCompat.setTransitionName(((PhotoViewHolder) holder).image,
                         String.valueOf(getItem(position).getId()));
                 break;
             case R.layout.item_network_state:

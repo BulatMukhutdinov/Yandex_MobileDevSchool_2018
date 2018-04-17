@@ -16,24 +16,24 @@ class PhotoViewHolder extends RecyclerView.ViewHolder implements View.OnClickLis
 
     private final OnPhotoClickListener listener;
 
-    ImageView photo;
+    ImageView image;
 
-    private String photoUrl;
+    private Photo photo;
 
     private PhotoViewHolder(View itemView, OnPhotoClickListener listener) {
         super(itemView);
-        photo = itemView.findViewById(R.id.photo);
+        image = itemView.findViewById(R.id.photo);
         this.listener = listener;
         itemView.setOnClickListener(this);
     }
 
     void bindTo(Photo item) {
-        photoUrl = item.getWebFormatURL();
+        photo = item;
 
         Picasso.with(itemView.getContext())
                 .load(item.getWebFormatURL())
                 .placeholder(R.color.background)
-                .into(photo);
+                .into(image);
     }
 
     static PhotoViewHolder create(ViewGroup parent, OnPhotoClickListener listener) {
@@ -44,6 +44,6 @@ class PhotoViewHolder extends RecyclerView.ViewHolder implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        listener.onClick(photo, photoUrl);
+        listener.onClick(photo, image);
     }
 }

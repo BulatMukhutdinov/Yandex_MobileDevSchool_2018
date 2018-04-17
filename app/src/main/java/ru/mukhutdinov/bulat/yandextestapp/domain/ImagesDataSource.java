@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.orhanobut.logger.Logger;
 
+import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
@@ -16,6 +17,9 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Action;
 import io.reactivex.schedulers.Schedulers;
 import lombok.Getter;
+import retrofit2.HttpException;
+import ru.mukhutdinov.bulat.yandextestapp.App;
+import ru.mukhutdinov.bulat.yandextestapp.R;
 import ru.mukhutdinov.bulat.yandextestapp.data.Photo;
 import ru.mukhutdinov.bulat.yandextestapp.data.network.Api;
 import ru.mukhutdinov.bulat.yandextestapp.data.network.ApiImpl;
@@ -103,12 +107,16 @@ public class ImagesDataSource extends PageKeyedDataSource<Integer, Photo> {
         }
     }
 
-    private NetworkState getProcessedError(Throwable throwable) {
+    private NetworkState getProcessedError(Throwable throwable) throws IOException {
         NetworkState error;
 
         if (throwable instanceof SocketTimeoutException
                 || throwable instanceof UnknownHostException) {
-            error = NetworkState.error("Failed to connect. Please check your internet connection");
+            error = NetworkState.error(App.instance.getString(R.string.network_error));
+        } else if (throwable instanceof HttpException
+                && ((HttpException) throwable).response().errorBody() != null) {
+            //noinspection ConstantConditions
+            error = NetworkState.error(((HttpException) throwable).response().errorBody().string());
         } else {
             error = NetworkState.error(throwable.getMessage());
         }

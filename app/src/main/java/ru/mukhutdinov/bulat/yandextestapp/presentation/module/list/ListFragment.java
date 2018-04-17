@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import ru.mukhutdinov.bulat.yandextestapp.R;
+import ru.mukhutdinov.bulat.yandextestapp.data.Photo;
 import ru.mukhutdinov.bulat.yandextestapp.databinding.FragmentPhotosBinding;
 import ru.mukhutdinov.bulat.yandextestapp.domain.state.NetworkState;
 import ru.mukhutdinov.bulat.yandextestapp.domain.state.Status;
@@ -37,9 +38,11 @@ public class ListFragment extends BaseFragment<ListPresenter> implements ListVie
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (getActivity() != null) {
+        if (getActivity() != null && ((MainActivity) getActivity()).getSupportActionBar() != null) {
             //noinspection ConstantConditions
             ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            //noinspection ConstantConditions
+            ((MainActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.app_name));
 
             photoViewModel = ViewModelProviders.of(getActivity()).get(PhotoViewModel.class);
 
@@ -107,11 +110,11 @@ public class ListFragment extends BaseFragment<ListPresenter> implements ListVie
 
     @Override
     protected void injectPresenter() {
-        presenter = PresenterInjector.provideListPresenter((MainRouter) getActivity(), this);
+        presenter = PresenterInjector.provideListPresenter(this, (MainRouter) getActivity());
     }
 
     @Override
-    public void onClick(ImageView photo, String photoUrl) {
-        presenter.onClick(photo, photoUrl);
+    public void onClick(Photo photo, ImageView image) {
+        presenter.onClick(photo, image);
     }
 }
