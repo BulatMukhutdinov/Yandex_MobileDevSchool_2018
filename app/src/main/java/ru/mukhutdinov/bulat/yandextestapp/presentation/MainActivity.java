@@ -17,11 +17,12 @@ public class MainActivity extends AppCompatActivity implements MainRouter {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, new ListFragment(), LIST_TAG)
-                .commit();
+        if (null == savedInstanceState) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, new ListFragment(), LIST_TAG)
+                    .commit();
+        }
     }
 
     @Override

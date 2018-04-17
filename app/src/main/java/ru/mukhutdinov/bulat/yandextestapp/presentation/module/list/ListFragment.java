@@ -36,6 +36,7 @@ public class ListFragment extends BaseFragment<ListPresenter> implements ListVie
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         if (getActivity() != null) {
             //noinspection ConstantConditions
             ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
